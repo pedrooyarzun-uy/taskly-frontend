@@ -4,7 +4,7 @@ import { Input } from '../components/Input'
 import { InputPassword } from '../components/InputPassword'
 import { Button } from '../components/Button'
 import { Divider } from '../components/Divider'
-import { Link } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export const SignUp = () => {
   return (
