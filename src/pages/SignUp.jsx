@@ -4,6 +4,7 @@ import { Input } from '../components/Input'
 import { InputPassword } from '../components/InputPassword'
 import { Button } from '../components/Button'
 import { Divider } from '../components/Divider'
+import { Link } from 'lucide-react'
 
 export const SignUp = () => {
   return (
@@ -26,7 +27,7 @@ export const SignUp = () => {
         <div className="py-3">
           <Divider text="O"/>
         </div>
-        <p className='text-sm text-gray-500'>Have an account? Sign-in <a href='https://google.com' className='text-sky-900 underline hover:cursor-pointer'>here</a></p>
+        <p className='text-sm text-gray-500'>Have an account? Sign-in <Link to="sign-up" className="text-sky-900 underline hover:cursor-pointer">here</Link></p>
       </Card>
     </div>
   )

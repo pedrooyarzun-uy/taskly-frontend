@@ -3,6 +3,7 @@ import { Button } from '../components/Button'
 import { MadeWith } from '../components/MadeWith'
 import { InputPassword } from '../components/InputPassword'
 import { Divider } from '../components/Divider'
+import { Link } from 'react-router-dom'
 
 export const Login = () => {
   return (
@@ -19,7 +20,7 @@ export const Login = () => {
             </div>
             <Button color="bg-green-400" text="Sign in"/>
           </div>
-          <p className='text-sm text-gray-500'>Don't have an account yet? Sign-up <a href='https://google.com' className='text-sky-900 underline hover:cursor-pointer'>here</a></p>
+          <p className='text-sm text-gray-500'>Don't have an account yet? Sign-up <Link to="sign-up" className="text-sky-900 underline hover:cursor-pointer">here</Link></p>
           <div className="py-4">
             <Divider text="OR"/>
           </div>
