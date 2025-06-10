@@ -4,11 +4,9 @@ import { MadeWith } from '../components/MadeWith'
 import { InputPassword } from '../components/InputPassword'
 import { Divider } from '../components/Divider'
 import { Link, Navigate } from 'react-router-dom'
-import { useContext, useEffect } from 'react'
-import { AuthContext } from '../contexts/AuthProvider'
+import { Navbar } from '../components/Navbar'
 
 export const Login = () => {
-
   return (
     <>
       <div className='min-h-screen flex flex-col items-center justify-center bg-zinc-50'>
