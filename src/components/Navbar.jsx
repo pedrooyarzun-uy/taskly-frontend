@@ -1,28 +1,26 @@
 import React from 'react'
 import { Divider } from './Divider'
 import { House, LayoutList, User, UserCog } from 'lucide-react'
+import { NavbarItem } from './NavbarItem'
 
 export const Navbar = () => {
   return (
-    <div className='bg-[#4DA8DA] text-white h-full font-bold'>
-      <div className='text-center'>
-        <div className="p-4">
-          <p className='text-2xl font-bold'>Hola! Pedro</p>
+    <div className='bg-[#f9f9f9] text-black h-full'>
+      <div className='text-left'>
+        <div className="p-4 flex justify-start">
+          <div className='w-10 h-10 rounded-full bg-blue-500'></div>
+          <div className='text-2xl font-bold ml-2'>DoIT - ToDo</div>
         </div>
-        <div className='pr-4 pl-4'>
-          <Divider text='O'/>
-        </div>
-        <div className='pr-4 pl-4 pt-2 pb-2 flex flex-row justify-left'>
-          <House fill='white'/>
-          <span className='ml-1'>Home</span>
-        </div>
-        <div className='pr-4 pl-4 pt-2 pb-2 flex flex-row justify-left'>
-          <UserCog fill='white'/>
-          <span className='ml-1'>User Settings</span>
-        </div>
-        <div className='pr-4 pl-4 pt-2 pb-2 flex flex-row justify-left'>
-          <LayoutList fill='white'/>
-          <span className='ml-1'>All tasks</span>
+        <br />
+        <div className='mr-4 ml-4'>
+          <p className='font-bold mb-2'>Categories</p>
+          <div>
+            <NavbarItem text='🏠 Home' totalItems='1'/>
+            <NavbarItem text='✅ Completed' totalItems='1'/>
+            <NavbarItem text='🗓️ Today' totalItems='1'/>
+            <NavbarItem text='👤 Personal' totalItems='1'/>
+            <NavbarItem text='💼 Work' totalItems='1'/>
+          </div>
         </div>
       </div>
     </div>
