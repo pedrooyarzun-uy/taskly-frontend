@@ -1,11 +1,8 @@
-import React from 'react'
-import { Divider } from './Divider'
-import { House, LayoutList, User, UserCog } from 'lucide-react'
 import { NavbarItem } from './NavbarItem'
 
 export const Navbar = () => {
   return (
-    <div className='bg-[#f9f9f9] text-black h-full'>
+    <div className='bg-[#f9f9f9] text-black h-full hidden md:block'>
       <div className='text-left'>
         <div className="p-4 flex justify-start">
           <div className='w-10 h-10 rounded-full bg-blue-500'></div>
