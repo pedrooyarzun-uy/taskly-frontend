@@ -1,21 +1,17 @@
 import React from "react"
-import {login as loginService, signup as signUpService} from "../api/services/auth.js"
+import { api } from "../api/axios/client.js"
 
 export const useAuth = () => {
-  
-  const login = async (credentials) => {
-    // try {
-    //   const userData = await loginService(credentials);
-    // }
-  }
 
   const signUp = async (credentials) => {
     console.log(credentials)
     try {
-      const res = await signUpService(credentials);
-      console.log(res);
+      const res = await api.post("/sign-up", credentials)
+      if (res.status == 200) {
+        return true;
+      }
     } catch (err) {
-      console.log(err);
+      return false;
     }
   }
 

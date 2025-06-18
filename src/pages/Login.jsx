@@ -21,7 +21,7 @@ export const Login = () => {
             </div>
             <Button color="bg-green-400" text="Sign in"/>
           </div>
-          <p className='text-sm text-gray-500'>Don't have an account yet? Sign-up <Link to="sign-up" className="text-sky-900 underline hover:cursor-pointer">here</Link></p>
+          <p className='text-sm text-gray-500'>Don't have an account yet? Sign-up <Link to="/sign-up" className="text-sky-900 underline hover:cursor-pointer">here</Link></p>
           <div className="py-4">
             <Divider text="OR"/>
           </div>
