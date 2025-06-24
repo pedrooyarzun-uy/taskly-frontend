@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Navbar } from '../components/Navbar'
 import { Plus, Settings } from 'lucide-react'
 import { toast } from 'react-hot-toast'
+import { SettingsMenu } from '../components/SettingsMenu'
 
 export const Home = () => {
-
   useEffect(() => {
     if (localStorage.getItem("justLoggedIn")){
       toast.success("Welcome back! Pedro");
@@ -21,14 +21,13 @@ export const Home = () => {
             <p className='text-2xl font-bold'>Welcome Back, Pedro 🤩</p>
             <p className='text-sm text-gray-400'>Some informative text</p>
           </div>
-          <div className='bg-gray-200 p-2 rounded hover:bg-gray-100 cursor-pointer transition-opacity duration-500'>
-            <Settings color='black' />
-          </div>
+          <SettingsMenu/>
+          
         </div>
 
         <div className='flex flex-row justify-start bg-[#f9f9f9] p-4 rounded mt-4 border-dashed border-1 border-gray-300 hover:bg-gray-200 cursor-pointer hover:border-gray-500'>
-              <Plus color='black'/> 
-              <div className='ml-4'>Add Task</div>
+          <Plus color='black'/> 
+          <div className='ml-4'>Add Task</div>
         </div>
       </div>
     </div>
