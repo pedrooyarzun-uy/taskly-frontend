@@ -1,8 +1,17 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { Navbar } from '../components/Navbar'
 import { Plus, Settings } from 'lucide-react'
+import { toast } from 'react-hot-toast'
 
 export const Home = () => {
+
+  useEffect(() => {
+    if (localStorage.getItem("justLoggedIn")){
+      toast.success("Welcome back! Pedro");
+      localStorage.removeItem("justLoggedIn");
+    }
+  }, []);
+
   return (
     <div className='grid grid-cols-1 md:grid-cols-[minmax(220px,300px)_1fr] h-screen bg-[#ffffff]'>
       <Navbar />
@@ -22,7 +31,6 @@ export const Home = () => {
               <div className='ml-4'>Add Task</div>
         </div>
       </div>
-
     </div>
   )
 }

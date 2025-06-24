@@ -1,9 +1,7 @@
-import React from 'react'
-import { Login } from './pages/Login'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { SignUp } from './pages/SignUp'
 import { AppRoutes } from './routes/AppRoutes'
 import { AuthProvider } from './contexts/AuthProvider'
+import { Toaster } from 'react-hot-toast'
 
 export const App = () => {
   
@@ -13,6 +11,7 @@ export const App = () => {
     <BrowserRouter>
       <AuthProvider>
         <AppRoutes/>
+        <Toaster/>
       </AuthProvider>
     </BrowserRouter>
   )

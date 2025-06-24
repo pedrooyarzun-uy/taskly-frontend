@@ -27,7 +27,10 @@ export const useAuth = () => {
       if (res.status == 200){
         setToken(res.data.token)
         localStorage.setItem("credentials", res.data.token);
-        navigate("/home");
+        localStorage.setItem("justLoggedIn", true);
+        navigate("/home", {state: {
+          loggedIn: true
+        }});
       } else {
         return {
           success: false, 
