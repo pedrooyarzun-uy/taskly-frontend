@@ -1,7 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import { api } from "../api/axios/client.js"
+import { AuthContext } from "../contexts/AuthProvider.jsx"
+import { useNavigate } from "react-router-dom";
 
 export const useAuth = () => {
+
+  const {setIsAuthenticated} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const signUp = async (credentials) => {
     try {
@@ -19,6 +24,8 @@ export const useAuth = () => {
       const res = await api.post("/sign-in", credentials);
 
       if (res.status == 200){
+        setIsAuthenticated(true);
+        navigate("/home")
         return {
           success: true,
           message: res.data.message
@@ -33,7 +40,7 @@ export const useAuth = () => {
     } catch (err) {
       return {
         success: false,
-        message: 'Something went wrong'
+        message: err.status == 401 ? (err.response?.data?.error) : "Something went wrong"
       };
     }
   }
