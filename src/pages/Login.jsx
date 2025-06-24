@@ -23,7 +23,6 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await signIn(form);
-    console.log(res);
     if (!res.success){
       errorToast(res.message);
       return

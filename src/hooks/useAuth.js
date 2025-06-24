@@ -2,10 +2,11 @@ import React, { useContext } from "react"
 import { api } from "../api/axios/client.js"
 import { AuthContext } from "../contexts/AuthProvider.jsx"
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 export const useAuth = () => {
 
-  const {setIsAuthenticated} = useContext(AuthContext);
+  const {setIsAuthenticated, setToken} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const signUp = async (credentials) => {
@@ -24,12 +25,9 @@ export const useAuth = () => {
       const res = await api.post("/sign-in", credentials);
 
       if (res.status == 200){
-        setIsAuthenticated(true);
-        navigate("/home")
-        return {
-          success: true,
-          message: res.data.message
-        };
+        setToken(res.data.token)
+        localStorage.setItem("credentials", res.data.token);
+        navigate("/home");
       } else {
         return {
           success: false, 

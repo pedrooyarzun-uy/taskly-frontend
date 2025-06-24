@@ -5,14 +5,23 @@ import { SignUp } from '../pages/SignUp'
 import { Login } from '../pages/Login'
 import { PrivateRoutes } from './PrivateRoutes'
 import { CheckEmail } from '../pages/CheckEmail'
+import { PublicRoutes } from './PublicRoutes'
 
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={<Login/>}/>
-      <Route path='/sign-up' element={<SignUp/>}/>
-      <Route path='/test' element={<Home/>}/>
+      <Route path='/login' element={
+        <PublicRoutes>
+          <Login/>
+        </PublicRoutes>
+      }/>
+      <Route path='/sign-up' element={
+        <PublicRoutes>
+          <SignUp/>
+        </PublicRoutes>
+      }/>
       <Route path='/check-email' element={<CheckEmail/>}/>
+      
       <Route path='/home' element={
         <PrivateRoutes>
           <Home/>
