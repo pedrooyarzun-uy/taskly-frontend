@@ -6,6 +6,7 @@ import { Login } from '../pages/Login'
 import { PrivateRoutes } from './PrivateRoutes'
 import { CheckEmail } from '../pages/CheckEmail'
 import { PublicRoutes } from './PublicRoutes'
+import { VerifyAccount } from '../pages/VerifyAccount'
 
 export const AppRoutes = () => {
   return (
@@ -20,8 +21,18 @@ export const AppRoutes = () => {
           <SignUp/>
         </PublicRoutes>
       }/>
-      <Route path='/check-email' element={<CheckEmail/>}/>
-      
+      <Route path='/check-email' element={
+        <PublicRoutes>
+          <CheckEmail/>
+        </PublicRoutes>
+      }/>
+      <Route path='/verify-account' element={
+        <PublicRoutes>
+          <VerifyAccount/>
+        </PublicRoutes>
+      }>
+
+      </Route>
       <Route path='/home' element={
         <PrivateRoutes>
           <Home/>

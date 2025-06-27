@@ -46,8 +46,29 @@ export const useAuth = () => {
     }
   }
 
+  const verifyUser = async(token) => {
+    try {
+      const res = await api.get("/verify-user?token=" + token);
+
+      if (res.status == 200) {
+        return {
+          success: true
+        }
+      } else {
+        return {
+          success: false
+        }
+      }
+    } catch (err) {
+      return {
+        success: false
+      }
+    }
+  }
+
   return {
     signUp,
-    signIn
+    signIn,
+    verifyUser
   }
 }
