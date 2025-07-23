@@ -7,10 +7,16 @@ import { PrivateRoutes } from './PrivateRoutes'
 import { CheckEmail } from '../pages/CheckEmail'
 import { PublicRoutes } from './PublicRoutes'
 import { VerifyAccount } from '../pages/VerifyAccount'
+import { Landing } from '../pages/Landing'
 
 export const AppRoutes = () => {
   return (
     <Routes>
+      <Route path='/' element={
+        <PublicRoutes>
+          <Landing/>
+        </PublicRoutes>
+      }/>
       <Route path='/login' element={
         <PublicRoutes>
           <Login/>
