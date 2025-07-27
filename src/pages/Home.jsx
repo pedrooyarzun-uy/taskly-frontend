@@ -3,13 +3,20 @@ import { Navbar } from '../components/Navbar'
 import { Plus, Settings } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { SettingsMenu } from '../components/SettingsMenu'
+import { jwtDecode } from 'jwt-decode'
 
 export const Home = () => {
+
+  const [name, setName] = useState("");
+
   useEffect(() => {
     if (localStorage.getItem("justLoggedIn")){
       toast.success("Welcome back! Pedro");
       localStorage.removeItem("justLoggedIn");
     }
+
+    const res = jwtDecode(localStorage.getItem("credentials"));
+    setName(res.name);
   }, []);
 
   return (
@@ -18,7 +25,7 @@ export const Home = () => {
       <div className='flex flex-col gap-4 mt-4 ml-8 mr-8'>
         <div className='flex flex-row justify-between items-start'>
           <div>
-            <p className='text-2xl font-bold'>Welcome Back, Pedro 🤩</p>
+            <p className='text-2xl font-bold'>Welcome Back, {name} 🤩</p>
             <p className='text-sm text-gray-400'>Some informative text</p>
           </div>
           <SettingsMenu/>
