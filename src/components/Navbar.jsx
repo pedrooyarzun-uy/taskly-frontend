@@ -4,9 +4,11 @@ export const Navbar = () => {
   return (
     <div className='bg-[#f9f9f9] text-black h-full hidden md:block'>
       <div className='text-left'>
-        <div className="p-4 flex justify-start">
-          <div className='w-10 h-10 rounded-full bg-blue-500'></div>
-          <div className='text-2xl font-bold ml-2'>DoIT - ToDo</div>
+        <div className="ml-3 mt-4 flex justify-start">
+          <div className='w-10 h-10 rounded-xl '>
+            <img src="./images/logo.png" alt="" />
+          </div>
+          <div className='text-2xl font-bold ml-2'>Taskly</div>
         </div>
         <br />
         <div className='mr-4 ml-4'>
