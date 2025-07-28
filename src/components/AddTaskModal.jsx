@@ -1,8 +1,27 @@
 import { Modal } from './Modal'
 import { Input } from './Input'
 import { Button } from './Button'
+import { useEffect, useState } from 'react'
+import { useCategories } from '../hooks/useCategories'
 
 export const AddTaskModal = ({isOpen, onClose}) => {
+  
+  const {getAllCategories} = useCategories();
+  const [categories, setCategories] = useState([]);
+  const [selected, setSelected] = useState("");
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const res = await getAllCategories();
+      if (res.success) {
+        setCategories(res.categories);
+      }
+    }
+
+    fetchCategories();
+  }, [])
+  
+  
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className='p-4 w-full'>
@@ -17,8 +36,13 @@ export const AddTaskModal = ({isOpen, onClose}) => {
             <Input placeholder="Task description..."/>
           </div>
           <div className='mb-4'>
-            <select className='w-full border-1 border-gray-400 rounded-md p-2 text-gray-400 focus:outline-gray-400'>
-              <option selected value="">Category...</option>
+            <select className={`w-full border-1 border-gray-400 rounded-md p-2 focus:outline-gray-400 ${selected ? "text-black" : "text-gray-400"}`} onChange={(e) => setSelected(e.target.value)}>
+              <option value="">Category...</option>
+              {categories.map((cat) => (
+                <option key={cat.Id} value={cat.Id}>
+                  {cat.Name}
+                </option>
+              ))}
             </select>
           </div>
         </div>
