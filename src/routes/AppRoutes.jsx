@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { Home } from '../pages/Home'
 import { SignUp } from '../pages/SignUp'
 import { Login } from '../pages/Login'
@@ -11,6 +11,9 @@ import { VerifyAccount } from '../pages/VerifyAccount'
 export const AppRoutes = () => {
   return (
     <Routes>
+      <Route path='/' element={
+        <Navigate to="/login"/>
+      }/>
       <Route path='/login' element={
         <PublicRoutes>
           <Login/>
