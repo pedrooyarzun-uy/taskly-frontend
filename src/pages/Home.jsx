@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Navbar } from '../components/Navbar'
-import { Plus } from 'lucide-react'
+import { GripVertical, Plus } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { SettingsMenu } from '../components/SettingsMenu'
 import { jwtDecode } from 'jwt-decode'
 import { AddTaskModal } from '../components/AddTaskModal'
+import { useTasks } from '../hooks/useTasks'
 
 export const Home = () => {
 
   const [name, setName] = useState("");
   const [isOpenTask, setIsOpenTask] = useState(false);
+  const [tasks, setTasks] = useState([]);
+
+  const {getPending} = useTasks();
 
   useEffect(() => {
     if (localStorage.getItem("justLoggedIn")){
@@ -19,7 +23,26 @@ export const Home = () => {
 
     const res = jwtDecode(localStorage.getItem("credentials"));
     setName(res.name);
-  }, []);
+
+    const fetchTasks = async () => {
+      const res = await getPending();
+      if (res.success) {
+        setTasks(res.tasks);
+      }
+    }
+    
+    fetchTasks();
+
+  }, [], isOpenTask);
+
+  const changeCheckbox = (e) => {
+    const div = e.target.parentElement;
+    if (e.target.checked) {
+      div.classList.add("bg-gray-200", "border-1", "border-gray-300", "line-through", "text-gray-400");
+    } else {
+      div.classList.remove("bg-gray-200", "border-1", "border-gray-300", "line-through", "text-gray-400");
+    }
+  }
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-[minmax(220px,300px)_1fr] h-screen bg-[#ffffff]'>
@@ -39,8 +62,16 @@ export const Home = () => {
           <div className='ml-4'>Add Task</div>
         </div>
 
+        {
+          tasks.map((item) => (
+            <div id={"task-div-"+item.Id} key={"task-"+item.Id} className='flex items-center p-1 rounded'>
+              <GripVertical color='#dbdbdd' className='mr-2'/>
+              <input id={"task-"+item.Id} type="checkbox" className='w-5 h-5 accent-black rounded-full cursor-pointer' onClick={(e) => {changeCheckbox(e)}}/>
+              <p className='ml-2'>{item.Title}</p>
+            </div>
+          ))
+        }
         <AddTaskModal isOpen={isOpenTask} onClose={() => {setIsOpenTask(false)}}/>
-
       </div>
     </div>
   )

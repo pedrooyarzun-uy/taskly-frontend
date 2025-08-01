@@ -29,7 +29,30 @@ export const useTasks = () => {
     }
   }
 
-  return {
-    create
+  const getPending = async() => {
+    try {
+      const res  = await api.get("/get-tasks");
+      
+      if (res.status == 200) {
+        return {
+          success: true, 
+          tasks: res.data.tasks
+        }
+      }
+  
+      return {
+        success: false
+      }
+    } catch (e) {
+      return {
+        success: false
+      }
+    }
   }
+
+  return {
+    create,
+    getPending
+  }
+
 }
