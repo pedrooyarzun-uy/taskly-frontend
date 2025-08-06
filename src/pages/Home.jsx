@@ -62,15 +62,28 @@ export const Home = () => {
           <div className='ml-4'>Add Task</div>
         </div>
 
-        {
-          tasks.map((item) => (
-            <div id={"task-div-"+item.Id} key={"task-"+item.Id} className='flex items-center p-1 rounded'>
-              <GripVertical color='#dbdbdd' className='mr-2'/>
-              <input id={"task-"+item.Id} type="checkbox" className='w-5 h-5 accent-black rounded-full cursor-pointer' onClick={(e) => {changeCheckbox(e)}}/>
-              <p className='ml-2'>{item.Title}</p>
-            </div>
-          ))
-        }
+        {tasks.map((category) => (
+          <div key={`category-${category.category_id}`} className='mb-4'>
+            <h2 className='text-lg font-semibold mb-2'>{category.category_name}</h2>
+            
+            {category.tasks.map((task) => (
+              <div
+                id={`task-${task.id}`}
+                key={`task-${task.id}`}
+                className='flex items-center p-1 rounded'
+              >
+                <GripVertical color='#dbdbdd' className='mr-2' />
+                <input
+                  id={`checkbox-${task.id}`}
+                  type="checkbox"
+                  className='w-5 h-5 accent-black rounded-full cursor-pointer'
+                  onClick={(e) => changeCheckbox(e)}
+                />
+                <p className='ml-2'>{task.title}</p>
+              </div>
+            ))}
+          </div>
+        ))}
         <AddTaskModal isOpen={isOpenTask} onClose={() => {setIsOpenTask(false)}}/>
       </div>
     </div>
