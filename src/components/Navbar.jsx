@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useCategories } from '../hooks/useCategories'
 import { NavbarItem } from './NavbarItem'
-import { prettier } from '../helpers/prettier';
 
 export const Navbar = () => {
 
   const [categories, setCategories] = useState([]);
 
   const { getAllCategories } = useCategories(); 
-  const { getRandomEmoji, hasEmoji } = prettier();
 
   useEffect(() => {
     const fetch = async () => {
@@ -38,7 +36,7 @@ export const Navbar = () => {
             {
               categories.map((item) => (
                 <div>
-                  <NavbarItem text={item.Name + (hasEmoji(item.Name) ? '' : ' ' + getRandomEmoji())} totalItems='1'/>
+                  <NavbarItem text={item.Name} totalItems='1'/>
                 </div>
               ))
             }
