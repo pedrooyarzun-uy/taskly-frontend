@@ -4,7 +4,7 @@ import { EllipsisVertical, GripVertical, Plus } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { SettingsMenu } from '../components/SettingsMenu'
 import { jwtDecode } from 'jwt-decode'
-import { AddTaskModal } from '../components/AddTaskModal'
+import { AddTaskModal } from '../components/modals/AddTaskModal'
 import { useTasks } from '../hooks/useTasks'
 
 export const Home = () => {

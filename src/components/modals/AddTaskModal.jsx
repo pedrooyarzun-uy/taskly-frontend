@@ -1,9 +1,9 @@
-import { Modal } from './Modal'
-import { Input } from './Input'
-import { Button } from './Button'
+import { Modal } from '../Modal'
+import { Input } from '../Input'
+import { Button } from '../Button'
 import { useEffect, useState } from 'react'
-import { useCategories } from '../hooks/useCategories'
-import { useTasks } from '../hooks/useTasks'
+import { useCategories } from '../../hooks/useCategories'
+import { useTasks } from '../../hooks/useTasks'
 import toast from 'react-hot-toast'
 
 export const AddTaskModal = ({isOpen, onClose}) => {
