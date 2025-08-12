@@ -4,7 +4,7 @@ import { NavbarItem } from './NavbarItem'
 import { Plus } from 'lucide-react';
 import { AddCategoryModal } from './modals/AddCategoryModal';
 
-export const Navbar = () => {
+export const Navbar = ({refreshCategories}) => {
 
   const [categories, setCategories] = useState([]);
   const [isOpenCategory, setIsOpenCategory] = useState(false);
@@ -22,7 +22,7 @@ export const Navbar = () => {
     }
 
     fetch();
-  }, [isOpenCategory]);
+  }, [isOpenCategory, refreshCategories]);
   
 
   return (

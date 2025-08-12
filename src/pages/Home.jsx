@@ -13,7 +13,7 @@ export const Home = () => {
   const [isOpenTask, setIsOpenTask] = useState(false);
   const [tasks, setTasks] = useState([]);
 
-  const {getPending} = useTasks();
+  const {getPending, complete} = useTasks();
 
   useEffect(() => {
     if (localStorage.getItem("justLoggedIn")){
@@ -40,6 +40,20 @@ export const Home = () => {
     const div = e.target.parentElement;
     if (e.target.checked) {
       div.classList.add("bg-gray-200", "border-1", "border-gray-300", "line-through", "text-gray-400");
+
+      const completeTask = async () => {
+        const res = await complete(e.target.id);
+
+        if (res.success) {
+          toast.success("Task completed! 🥳");
+          return
+        }
+
+        toast.error(res.message);
+      }
+
+      completeTask();
+
     } else {
       div.classList.remove("bg-gray-200", "border-1", "border-gray-300", "line-through", "text-gray-400");
     }
@@ -47,7 +61,7 @@ export const Home = () => {
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-[minmax(220px,300px)_1fr] h-screen bg-[#ffffff]'>
-      <Navbar />
+      <Navbar refreshCategories={isOpenTask}/>
       <div className='flex flex-col gap-4 mt-4 ml-8 mr-8'>
         <div className='flex flex-row justify-between items-start'>
           <div>
@@ -71,11 +85,11 @@ export const Home = () => {
               <div
                 id={`task-${task.id}`}
                 key={`task-${task.id}`}
-                className='flex items-center p-1 rounded mt-1'
+                className='flex items-center p-1 rounded mt-1 border border-transparent'
               >
                 <GripVertical color='#dbdbdd' className='mr-2' />
                 <input
-                  id={`checkbox-${task.id}`}
+                  id={task.id}
                   type="checkbox"
                   className='w-5 h-5 accent-black rounded-full cursor-pointer'
                   onClick={(e) => changeCheckbox(e)}
