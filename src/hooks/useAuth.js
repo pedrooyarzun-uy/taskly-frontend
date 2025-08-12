@@ -3,6 +3,7 @@ import { api } from "../api/axios/client.js"
 import { AuthContext } from "../contexts/AuthProvider.jsx"
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import toast from "react-hot-toast";
 
 export const useAuth = () => {
 
@@ -46,6 +47,14 @@ export const useAuth = () => {
     }
   }
 
+  const signOut = () => {
+    setIsAuthenticated(false);
+    setToken(null);
+    localStorage.removeItem("credentials");
+    navigate("/login");
+    toast.success("Hope to see you soon!");
+  }
+
   const verifyUser = async(token) => {
     try {
       const res = await api.get("/verify-user?token=" + token);
@@ -69,6 +78,7 @@ export const useAuth = () => {
   return {
     signUp,
     signIn,
+    signOut,
     verifyUser
   }
 }

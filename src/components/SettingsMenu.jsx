@@ -1,10 +1,12 @@
 import { LogOut, Settings } from 'lucide-react';
 import React, { useRef, useEffect } from 'react'
 import { useState } from 'react'
+import { useAuth } from '../hooks/useAuth';
 
 export const SettingsMenu = () => {
   
   const [open, setOpen] = useState(false);
+  const {signOut} = useAuth();
   const menuRef = useRef(null);
   
   useEffect(() => {
@@ -30,7 +32,7 @@ export const SettingsMenu = () => {
           <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
             Profile
           </button>
-          <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer hover:text-red-500">
+          <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer hover:text-red-500" onClick={signOut}>
             <div className='flex flex-row justify-between'>
               Sign Out
               <LogOut/>
