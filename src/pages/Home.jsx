@@ -61,7 +61,7 @@ export const Home = () => {
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-[minmax(220px,300px)_1fr] h-screen bg-[#ffffff]'>
-      <Navbar />
+      <Navbar refreshCategories={isOpenTask}/>
       <div className='flex flex-col gap-4 mt-4 ml-8 mr-8'>
         <div className='flex flex-row justify-between items-start'>
           <div>
