@@ -22,7 +22,31 @@ export const useCategories = () => {
     }
   }
 
+  const create = async (category) => {
+    try {
+      const res = await api.post("create-category", category)
+
+      if (res.status == 200) {
+        return {
+          success: true
+        }
+      } else {
+        return {
+          success: false,
+          message: res.message
+        }
+      }
+    } catch (error) {
+      return {
+        success: false,
+        message: e.response.data.error
+      }
+    }
+  }
+
   return {
     getAllCategories,
+    create
   }
+
 }
