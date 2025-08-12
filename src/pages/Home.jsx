@@ -65,13 +65,13 @@ export const Home = () => {
 
         {tasks.map((category) => (
           <div key={`category-${category.category_id}`} className='mb-4'>
-            <h2 className='text-lg font-semibold mb-2'>{category.category_name} {category.tasks.length}</h2>
+            <h2 className='text-lg font-semibold mb-2'>{category.category_name} <span className='bg-gray-200 pr-1 pl-1 rounded-md group-hover:bg-white'>{category.tasks.length}</span></h2>
             
             {category.tasks.map((task) => (
               <div
                 id={`task-${task.id}`}
                 key={`task-${task.id}`}
-                className='flex items-center p-1 rounded'
+                className='flex items-center p-1 rounded mt-1'
               >
                 <GripVertical color='#dbdbdd' className='mr-2' />
                 <input
