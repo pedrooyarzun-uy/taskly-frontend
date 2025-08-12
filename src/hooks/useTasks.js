@@ -29,6 +29,32 @@ export const useTasks = () => {
     }
   }
 
+  const complete = async (id) => {
+    try {
+      const payload = {
+        id: parseInt(id)
+      }
+
+      const res = await api.post("/complete-task", payload);
+      if (res.status == 200) {
+        return {
+          success: true
+        }
+      }
+
+      return {
+        success: false,
+        message: res.message
+      }
+
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response.data.error
+      }
+    }
+  }
+
   const getPending = async() => {
     try {
       const res  = await api.get("/get-tasks");
@@ -52,6 +78,7 @@ export const useTasks = () => {
 
   return {
     create,
+    complete,
     getPending
   }
 
