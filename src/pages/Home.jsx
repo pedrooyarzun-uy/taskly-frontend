@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Navbar } from '../components/Navbar'
-import { GripVertical, Plus } from 'lucide-react'
+import { EllipsisVertical, GripVertical, Plus } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { SettingsMenu } from '../components/SettingsMenu'
 import { jwtDecode } from 'jwt-decode'
@@ -81,6 +81,7 @@ export const Home = () => {
                   onClick={(e) => changeCheckbox(e)}
                 />
                 <p className='ml-2'>{task.title}</p>
+                <EllipsisVertical color='#dbdbdd' className='ml-auto'/>
               </div>
             ))}
           </div>
