@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useCategories } from '../hooks/useCategories'
 import { NavbarItem } from './NavbarItem'
+import { Plus } from 'lucide-react';
 
 export const Navbar = () => {
 
@@ -11,6 +12,7 @@ export const Navbar = () => {
   useEffect(() => {
     const fetch = async () => {
       const res = await getAllCategories();
+ 
       if (res.success) {
         setCategories(res.categories);
       }
@@ -36,10 +38,14 @@ export const Navbar = () => {
             {
               categories.map((item) => (
                 <div>
-                  <NavbarItem text={item.Name} totalItems='1'/>
+                  <NavbarItem text={item.Name} totalItems={item.TotalTasks}/>
                 </div>
               ))
             }
+          </div>
+          <div className='flex hover:bg-gray-200 rounded-md group cursor-pointer p-2 mb-0.5 mt-0.5' onClick={() => {setIsOpenTask(true)}}>
+            <Plus color='black' strokeWidth={1}/> 
+            <div className='ml-2'>Create category</div>
           </div>
         </div>
       </div>
