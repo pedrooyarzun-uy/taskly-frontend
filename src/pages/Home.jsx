@@ -26,6 +26,7 @@ export const Home = () => {
 
     const fetchTasks = async () => {
       const res = await getPending();
+
       if (res.success) {
         setTasks(res.tasks);
       }
@@ -33,7 +34,7 @@ export const Home = () => {
     
     fetchTasks();
 
-  }, [], isOpenTask);
+  }, [isOpenTask]);
 
   const changeCheckbox = (e) => {
     const div = e.target.parentElement;
@@ -58,13 +59,13 @@ export const Home = () => {
         </div>
 
         <div className='flex flex-row justify-start bg-[#f9f9f9] p-4 rounded mt-4 border-dashed border-1 border-gray-300 hover:bg-gray-200 cursor-pointer hover:border-gray-500' onClick={() => {setIsOpenTask(true)}}>
-          <Plus color='black'/> 
+          <Plus color='black' strokeWidth={2}/> 
           <div className='ml-4'>Add Task</div>
         </div>
 
         {tasks.map((category) => (
           <div key={`category-${category.category_id}`} className='mb-4'>
-            <h2 className='text-lg font-semibold mb-2'>{category.category_name}</h2>
+            <h2 className='text-lg font-semibold mb-2'>{category.category_name} {category.tasks.length}</h2>
             
             {category.tasks.map((task) => (
               <div
