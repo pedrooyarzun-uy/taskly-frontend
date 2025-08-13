@@ -16,7 +16,6 @@ export const Navbar = ({refreshCategories}) => {
       const res = await getAllCategories();
  
       if (res.success) {
-        console.log(res.categories);
         setCategories(res.categories);
       }
     }
