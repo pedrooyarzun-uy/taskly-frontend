@@ -6,6 +6,7 @@ import { SettingsMenu } from '../components/SettingsMenu'
 import { jwtDecode } from 'jwt-decode'
 import { AddTaskModal } from '../components/modals/AddTaskModal'
 import { useTasks } from '../hooks/useTasks'
+import { SettingsTask } from '../components/SettingsTask'
 
 export const Home = () => {
 
@@ -13,7 +14,7 @@ export const Home = () => {
   const [isOpenTask, setIsOpenTask] = useState(false);
   const [tasks, setTasks] = useState([]);
 
-  const {getPending, complete} = useTasks();
+  const {getPending, complete, incomplete} = useTasks();
 
   useEffect(() => {
     if (localStorage.getItem("justLoggedIn")){
@@ -55,7 +56,21 @@ export const Home = () => {
       completeTask();
 
     } else {
+
       div.classList.remove("bg-gray-200", "border-1", "border-gray-300", "line-through", "text-gray-400");
+      
+      const incompleteTask = async () => {
+        const res = await incomplete(e.target.id);
+
+        if (res.success) {
+          toast.success('Task reopened ✅');
+          return
+        }
+
+        toast.error(res.message);
+      }
+
+      incompleteTask();
     }
   }
 
@@ -95,7 +110,7 @@ export const Home = () => {
                   onClick={(e) => changeCheckbox(e)}
                 />
                 <p className='ml-2'>{task.title}</p>
-                <EllipsisVertical color='#dbdbdd' className='ml-auto'/>
+                <SettingsTask key={`settings-${task.id}`}/>
               </div>
             ))}
           </div>
