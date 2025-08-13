@@ -24,18 +24,19 @@ export const Home = () => {
 
     const res = jwtDecode(localStorage.getItem("credentials"));
     setName(res.name);
-
-    const fetchTasks = async () => {
-      const res = await getPending();
-
-      if (res.success) {
-        setTasks(res.tasks);
-      }
-    }
+    
     
     fetchTasks();
-
+    
   }, [isOpenTask]);
+  
+  const fetchTasks = async () => {
+    const res = await getPending();
+
+    if (res.success) {
+      setTasks(res.tasks);
+    }
+  }
 
   const changeCheckbox = (e) => {
     const div = e.target.parentElement;
@@ -110,7 +111,7 @@ export const Home = () => {
                   onClick={(e) => changeCheckbox(e)}
                 />
                 <p className='ml-2'>{task.title}</p>
-                <SettingsTask key={`settings-${task.id}`}/>
+                <SettingsTask key={`settings-${task.id}`} id={task.id} onDeleteSuccess={fetchTasks}/>
               </div>
             ))}
           </div>

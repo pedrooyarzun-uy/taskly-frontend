@@ -103,10 +103,37 @@ export const useTasks = () => {
     }
   }
 
+  const deleteTask = async (id) => {
+    try {
+      const payload = {
+        id: parseInt(id)
+      }
+
+      const res = await api.post('delete-task', payload);
+
+      if (res.status == 200) {
+        return {
+          success: true
+        }
+      }
+
+      return {
+        success: false, 
+        message: res.message
+      }
+    } catch (error) {
+      return {
+        success: false, 
+        message: error.response.data.error
+      }
+    }
+  }
+
   return {
     create,
     complete,
     incomplete,
+    deleteTask,
     getPending
   }
 
