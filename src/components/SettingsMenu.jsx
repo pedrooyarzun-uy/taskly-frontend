@@ -24,7 +24,7 @@ export const SettingsMenu = () => {
 
   return (
     <div ref={menuRef}>
-      <div className='bg-gray-200 p-2 rounded hover:bg-gray-100 cursor-pointer transition-opacity duration-500' onClick={() => setOpen(!open)}>
+      <div className='bg-gray-200 p-2 rounded border border-transparent hover:bg-gray-100 cursor-pointer transition-opacity duration-500 hover:border-gray-400' onClick={() => setOpen(!open)}>
         <Settings color='black' />
       </div>
       {open && (
