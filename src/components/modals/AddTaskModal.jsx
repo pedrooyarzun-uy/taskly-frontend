@@ -35,6 +35,11 @@ export const AddTaskModal = ({isOpen, onClose}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if(!form.title || !form.dueDate || !form.category ){
+      toast.error("All fields must be completed");
+      return
+    }
+
     const res = await create({
       title: form.title, 
       dueDate: form.dueDate,
