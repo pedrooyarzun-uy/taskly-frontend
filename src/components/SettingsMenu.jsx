@@ -29,9 +29,9 @@ export const SettingsMenu = () => {
       </div>
       {open && (
         <div className="absolute right-8 mt-2 w-40 bg-white border rounded shadow-lg z-50">
-          <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
+          {/* <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
             Profile
-          </button>
+          </button> */}
           <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer hover:text-red-500" onClick={signOut}>
             <div className='flex flex-row justify-between'>
               Sign Out
