@@ -40,7 +40,7 @@ export const AddCategoryModal = ({isOpen, onClose}) => {
               <Input placeholder='Category name...' onChange={(e) => {setName(e.target.value)}} value={name} name='name'/>
             </div>
           </div>
-          <Button color="bg-green-400" text="Create catefory"/>
+          <Button color="bg-green-400" text="Create category"/>
         </form>
       </div>
     </Modal>
