@@ -73,7 +73,7 @@ export const AddTaskModal = ({isOpen, onClose}) => {
                 onChange={(date) => {
                   setForm({
                     ...form,
-                    dueDate: date && date.toISOString() // 👈 ISO string compatible con Go
+                    dueDate: date && date.toISOString()
                   });
                 }}
                 value={form.dueDate ? moment(form.dueDate) : null}
