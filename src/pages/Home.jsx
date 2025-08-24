@@ -98,11 +98,11 @@ export const Home = () => {
           <div className='ml-4'>Add Task</div>
         </div>
 
-        {tasks.map((category) => (
+        {tasks?.map((category) => (
           <div key={`category-${category.category_id}`} className='mb-4'>
-            <h2 className='text-lg font-semibold mb-2'>{category.category_name} <span className='bg-gray-200 pr-1 pl-1 rounded-md group-hover:bg-white'>{category.tasks.length}</span></h2>
+            <h2 className='text-lg font-semibold mb-2'>{category.category_name} <span className='bg-gray-200 pr-1 pl-1 rounded-md group-hover:bg-white'>{category.tasks?.length}</span></h2>
             
-            {category.tasks.slice() // para no mutar el array original
+            {category.tasks?.slice() // para no mutar el array original
               .sort((a, b) => {
                 const today = moment().startOf("day");
                 const tomorrow = moment().add(1, "day").startOf("day");
@@ -119,8 +119,8 @@ export const Home = () => {
                 const pa = getPriority(da);
                 const pb = getPriority(db);
 
-                if (pa !== pb) return pa - pb; // primero por prioridad
-                return da - db; // si tienen la misma prioridad, ordenar cronológicamente
+                if (pa !== pb) return pa - pb;
+                return da - db; 
               })
               .map((task) => (
                 <div
