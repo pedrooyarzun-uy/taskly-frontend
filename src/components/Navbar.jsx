@@ -45,7 +45,7 @@ export const Navbar = ({refreshCategories}) => {
               ))
             }
           </div>
-          <div className='flex hover:bg-gray-200 rounded-md group cursor-pointer p-2 mb-0.5 mt-0.5' onClick={() => {setIsOpenCategory(true)}}>
+          <div className='flex hover:bg-gray-200 rounded group p-2 mb-0.5 mt-1 border-dashed border-1 border-gray-300 cursor-pointer hover:border-gray-500' onClick={() => {setIsOpenCategory(true)}}>
             <Plus color='black' strokeWidth={1}/> 
             <div className='ml-2'>Create category</div>
           </div>

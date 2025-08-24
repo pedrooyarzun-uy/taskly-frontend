@@ -5,12 +5,14 @@ import { useEffect, useState } from 'react'
 import { useCategories } from '../../hooks/useCategories'
 import { useTasks } from '../../hooks/useTasks'
 import toast from 'react-hot-toast'
+import Datetime from 'react-datetime'
+import "react-datetime/css/react-datetime.css";
+import moment from "moment"
 
 export const AddTaskModal = ({isOpen, onClose}) => {
-  
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState("");
-  const [form, setForm] = useState({title: '', description: '', category: 0});
+  const [form, setForm] = useState({title: '', dueDate: '', category: 0});
 
   const {getAllCategories} = useCategories();
   const {create} = useTasks();
@@ -33,9 +35,14 @@ export const AddTaskModal = ({isOpen, onClose}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if(!form.title || !form.dueDate || !form.category ){
+      toast.error("All fields must be completed");
+      return
+    }
+
     const res = await create({
       title: form.title, 
-      description: form.description,
+      dueDate: form.dueDate,
       category: form.category
     });
 
@@ -62,7 +69,27 @@ export const AddTaskModal = ({isOpen, onClose}) => {
               <Input placeholder="Task name..." onChange={handleChange} value={form.title} name="title"/>
             </div>
             <div className='mb-4'>
-              <Input placeholder="Task description..." onChange={handleChange} value={form.description} name="description"/>
+              <Datetime
+                onChange={(date) => {
+                  setForm({
+                    ...form,
+                    dueDate: date && date.toISOString()
+                  });
+                }}
+                value={form.dueDate ? moment(form.dueDate) : null}
+                dateFormat='YYYY/MM/DD'
+                timeFormat='HH:mm'
+                inputProps={{
+                  placeholder: "Select a due date...",
+                  className: "w-full p-2 border border-gray-400 rounded-md focus:outline-none"
+                }}
+                renderDay={(props, currentDate, selectedDate) => {
+                  const today = moment(); 
+                  const isToday = currentDate.isSame(today, "day");
+
+                  return <td {...props} className={`p-2 text-black rounded hover:bg-gray-200 ${isToday ? "border-dashed border-1 border-gray-300 bg-gray-200 cursor-pointer hover:border-gray-500" : ""} `} >{currentDate.date()}</td>;
+                }}
+              />
             </div>
             <div className='mb-4'>
               <select name="category" className={`w-full border-1 border-gray-400 rounded-md p-2 focus:outline-gray-400 ${selected ? "text-black" : "text-gray-400"}`} onChange={(e) => {

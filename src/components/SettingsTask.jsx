@@ -42,8 +42,8 @@ export const SettingsTask = ({id, onDeleteSuccess}) => {
   }
 
   return (
-    <div ref={menuRef} className=' flex flex-row ml-auto'>
-      <Trash2 className='hover:cursor-pointer mr-4' color='red' id={`trash-${id}`} onClick={(e) => {handleDelete(e)}}/>
+    <div ref={menuRef} className='flex flex-row'>
+      <Trash2 className='hover:cursor-pointer mr-2 sm:mr-4' color='red' id={`trash-${id}`} onClick={(e) => {handleDelete(e)}}/>
       <SquarePen className='hover:cursor-pointer' color='gray' id={`square-${id}`} />
     </div>
   )

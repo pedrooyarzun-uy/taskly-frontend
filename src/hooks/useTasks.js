@@ -2,11 +2,11 @@ import React from 'react'
 import { api } from '../api/axios/client'
 
 export const useTasks = () => {
-  const create = async ({title, description, category}) => {
+  const create = async ({title, dueDate, category}) => {
     try {
       const payload = {
         Title: title, 
-        Description: description, 
+        Due_date: dueDate, 
         Category: parseInt(category)
       }
 
