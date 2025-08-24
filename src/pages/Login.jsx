@@ -42,14 +42,11 @@ export const Login = () => {
               <div className='mb-4'>
                 <InputPassword text="Password" name='password' onChange={handleChange} value={form.password}/>
               </div>
-              <Button color="bg-green-400" text="Sign in"/>
+              <Button color="bg-green-400" text="Sign In"/>
             </form>
           </div>
           <p className='text-sm text-gray-500'>Don't have an account yet? Sign-up <Link to="/sign-up" className="text-sky-900 underline hover:cursor-pointer">here</Link></p>
-          <div className="py-4">
-            <Divider text="OR"/>
-          </div>
-          <Button color="bg-blue-600" text="Sign in with Google"/>
+          
         </div>
         <div className='fixed bottom-6'>
           <MadeWith/>
