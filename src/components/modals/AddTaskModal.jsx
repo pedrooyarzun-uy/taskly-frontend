@@ -99,7 +99,7 @@ export const AddTaskModal = ({isOpen, onClose}) => {
               value={form.category}
               >
                 <option value="">Category...</option>
-                {categories.map((cat) => (
+                {categories?.map((cat) => (
                   <option key={cat.Id} value={cat.Id}>
                     {cat.Name}
                   </option>

@@ -38,7 +38,7 @@ export const Navbar = ({refreshCategories}) => {
           <p className='font-bold mb-2'>Categories</p>
           <div>
             {
-              categories.map((item) => (
+              categories?.map((item) => (
                 <div>
                   <NavbarItem text={item.Name} totalItems={item.TotalTasks}/>
                 </div>
