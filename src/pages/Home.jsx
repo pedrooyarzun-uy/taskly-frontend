@@ -109,7 +109,7 @@ export const Home = () => {
           <div key={`category-${category.category_id}`} className='mb-4'>
             <h2 className='text-lg font-semibold mb-2'>{category.category_name} <span className='bg-gray-200 pr-1 pl-1 rounded-md group-hover:bg-white'>{category.tasks?.length}</span></h2>
             
-            {category.tasks?.slice() // para no mutar el array original
+            {category.tasks?.slice()
               .sort((a, b) => {
                 const today = moment().startOf("day");
                 const tomorrow = moment().add(1, "day").startOf("day");

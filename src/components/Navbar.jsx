@@ -54,7 +54,6 @@ export const Navbar = ({refreshCategories, mobileOpen, setMobileOpen}) => {
 
   return (
     <>
-      {/* Desktop */}
       <div className={`${baseClasses} hidden md:block`}>
         <Content categories={categories} setIsOpenCategory={setIsOpenCategory}/>
         <AddCategoryModal isOpen={isOpenCategory} onClose={() => {setIsOpenCategory(false)}}/>
@@ -62,9 +61,8 @@ export const Navbar = ({refreshCategories, mobileOpen, setMobileOpen}) => {
 
       {/* Mobile */}
       <div className={`fixed inset-0 z-50 flex md:hidden transition-opacity duration-300 
-        ${mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-        
-        {/* Fondo oscuro */}
+        ${mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+      >
         <div 
           className="fixed inset-0 bg-black/50 transition-opacity duration-300" 
           onClick={() => setMobileOpen(false)}
