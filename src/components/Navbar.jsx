@@ -56,7 +56,6 @@ export const Navbar = ({refreshCategories, mobileOpen, setMobileOpen}) => {
     <>
       <div className={`${baseClasses} hidden md:block`}>
         <Content categories={categories} setIsOpenCategory={setIsOpenCategory}/>
-        <AddCategoryModal isOpen={isOpenCategory} onClose={() => {setIsOpenCategory(false)}}/>
       </div>
 
       {/* Mobile */}
@@ -80,9 +79,9 @@ export const Navbar = ({refreshCategories, mobileOpen, setMobileOpen}) => {
             <X size={24}/>
           </button>
           <Content categories={categories} setIsOpenCategory={setIsOpenCategory}/>
-          <AddCategoryModal isOpen={isOpenCategory} onClose={() => {setIsOpenCategory(false)}}/>
         </div>
       </div>
+      <AddCategoryModal isOpen={isOpenCategory} onClose={() => {setIsOpenCategory(false)}}/>
     </>
   )
 }
