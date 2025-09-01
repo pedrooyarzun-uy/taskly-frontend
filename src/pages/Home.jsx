@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Navbar } from '../components/Navbar'
-import { GripVertical, Plus } from 'lucide-react'
+import { GripVertical, Plus, Menu } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { SettingsMenu } from '../components/SettingsMenu'
 import { jwtDecode } from 'jwt-decode'
@@ -15,6 +15,7 @@ export const Home = () => {
   const [name, setName] = useState("");
   const [isOpenTask, setIsOpenTask] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const {getPending, complete, incomplete} = useTasks();
 
@@ -82,9 +83,17 @@ export const Home = () => {
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-[minmax(220px,300px)_1fr] h-screen bg-[#ffffff]'>
-      <Navbar refreshCategories={isOpenTask}/>
+      <Navbar refreshCategories={isOpenTask} mobileOpen={mobileMenuOpen} setMobileOpen={setMobileMenuOpen}/>
       <div className='flex flex-col gap-4 mt-4 ml-8 mr-8'>
-        <div className='flex flex-row justify-between items-start'>
+        <button 
+          className='absolute left-0 -ml-6 top-2 md:hidden p-2 rounded-lg hover:bg-gray-200'
+          onClick={() => setMobileMenuOpen(true)}
+        >
+          <div className='bg-gray-200 p-2 rounded border border-transparent hover:bg-gray-100 cursor-pointer transition-opacity duration-500 hover:border-gray-400'>
+            <Menu className='ml-3'/>
+          </div>
+        </button>
+        <div className='flex flex-row justify-between items-start ml-6'>
           <div>
             <p className='text-2xl font-bold'>Welcome Back, {name} 🤩</p>
             <p className='text-sm text-gray-400'>It's {new Date().toDateString()} </p>
@@ -102,7 +111,7 @@ export const Home = () => {
           <div key={`category-${category.category_id}`} className='mb-4'>
             <h2 className='text-lg font-semibold mb-2'>{category.category_name} <span className='bg-gray-200 pr-1 pl-1 rounded-md group-hover:bg-white'>{category.tasks?.length}</span></h2>
             
-            {category.tasks?.slice() // para no mutar el array original
+            {category.tasks?.slice()
               .sort((a, b) => {
                 const today = moment().startOf("day");
                 const tomorrow = moment().add(1, "day").startOf("day");
