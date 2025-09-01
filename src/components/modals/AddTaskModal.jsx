@@ -13,7 +13,7 @@ export const AddTaskModal = ({isOpen, onClose}) => {
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState("");
   const [form, setForm] = useState({title: '', dueDate: '', category: 0});
-
+  
   const {getAllCategories} = useCategories();
   const {create} = useTasks();
   
@@ -70,6 +70,8 @@ export const AddTaskModal = ({isOpen, onClose}) => {
             </div>
             <div className='mb-4'>
               <Datetime
+                closeOnSelect={true}
+                closeOnClickOutside={true}
                 onChange={(date) => {
                   setForm({
                     ...form,
@@ -84,10 +86,20 @@ export const AddTaskModal = ({isOpen, onClose}) => {
                   className: "w-full p-2 border border-gray-400 rounded-md focus:outline-none"
                 }}
                 renderDay={(props, currentDate, selectedDate) => {
-                  const today = moment(); 
-                  const isToday = currentDate.isSame(today, "day");
+                  const isToday = currentDate.isSame(moment(), "day");
+                  const isSelected = selectedDate && currentDate.isSame(selectedDate, "day");
 
-                  return <td {...props} className={`p-2 text-black rounded hover:bg-gray-200 ${isToday ? "border-dashed border-1 border-gray-300 bg-gray-200 cursor-pointer hover:border-gray-500" : ""} `} >{currentDate.date()}</td>;
+                  return (
+                    <td
+                      {...props}
+                      className={`p-2 text-black rounded cursor-pointer hover:bg-gray-200
+                        ${isSelected ? "border-gray-300 bg-gray-200 hover:border-gray-500" : ""}
+                        ${!isSelected && isToday ? "bg-green-200 hover:bg-green-200" : ""}
+                      `}
+                    >
+                      {currentDate.date()}
+                    </td>
+                  )
                 }}
               />
             </div>
