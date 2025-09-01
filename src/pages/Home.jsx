@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Navbar } from '../components/Navbar'
-import { GripVertical, Plus } from 'lucide-react'
+import { GripVertical, Plus, Menu } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { SettingsMenu } from '../components/SettingsMenu'
 import { jwtDecode } from 'jwt-decode'
@@ -15,6 +15,7 @@ export const Home = () => {
   const [name, setName] = useState("");
   const [isOpenTask, setIsOpenTask] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const {getPending, complete, incomplete} = useTasks();
 
@@ -82,8 +83,14 @@ export const Home = () => {
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-[minmax(220px,300px)_1fr] h-screen bg-[#ffffff]'>
-      <Navbar refreshCategories={isOpenTask}/>
+      <Navbar refreshCategories={isOpenTask} mobileOpen={mobileMenuOpen} setMobileOpen={setMobileMenuOpen}/>
       <div className='flex flex-col gap-4 mt-4 ml-8 mr-8'>
+        <button 
+          className='absolute left-0 -ml-6 top-2 md:hidden p-2 rounded-lg hover:bg-gray-200'
+          onClick={() => setMobileMenuOpen(true)}
+        >
+          <Menu size={28} className='ml-5'/>
+        </button>
         <div className='flex flex-row justify-between items-start'>
           <div>
             <p className='text-2xl font-bold'>Welcome Back, {name} 🤩</p>
