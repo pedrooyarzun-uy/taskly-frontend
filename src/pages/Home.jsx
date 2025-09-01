@@ -89,9 +89,11 @@ export const Home = () => {
           className='absolute left-0 -ml-6 top-2 md:hidden p-2 rounded-lg hover:bg-gray-200'
           onClick={() => setMobileMenuOpen(true)}
         >
-          <Menu size={28} className='ml-5'/>
+          <div className='bg-gray-200 p-2 rounded border border-transparent hover:bg-gray-100 cursor-pointer transition-opacity duration-500 hover:border-gray-400'>
+            <Menu className='ml-3'/>
+          </div>
         </button>
-        <div className='flex flex-row justify-between items-start'>
+        <div className='flex flex-row justify-between items-start ml-6'>
           <div>
             <p className='text-2xl font-bold'>Welcome Back, {name} 🤩</p>
             <p className='text-sm text-gray-400'>It's {new Date().toDateString()} </p>
